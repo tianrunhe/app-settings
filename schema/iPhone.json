@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "App Name",
+    "Notification?",
+    "Alerts",
+    "Location",
+    "Background?",
+    "Cellular Data?"
+  ],
+  "properties": {
+    "App Name": {
+      "type": "string"
+    },
+    "Notification": {
+      "type": "boolean"
+    },
+    "Alerts": {
+      "enum": [
+        "Lock Screen",
+        "Notification Center",
+        "Temporary Banners",
+        "Persistent Banners"
+      ]
+    },
+    "Location": {
+      "enum": [
+        "Never",
+        "Ask Next Time",
+        "While Using the App",
+        "Always"
+      ]
+    },
+    "Background?": {
+      "type": "boolean"
+    },
+    "Celluar Data?": {
+      "type": "boolean"
+    }
+  },
+  "if": {
+    "properties": {
+      "Notification": { "const": true }
+    },
+    "required": ["Notification"]
+  },
+  "then": { "required": ["Alerts"] }
+}
