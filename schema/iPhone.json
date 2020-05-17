@@ -4,7 +4,6 @@
   "required": [
     "App Name",
     "Notification?",
-    "Alerts",
     "Location",
     "Background?",
     "Cellular Data?"
@@ -17,12 +16,16 @@
       "type": "boolean"
     },
     "Alerts": {
-      "enum": [
-        "Lock Screen",
-        "Notification Center",
-        "Temporary Banners",
-        "Persistent Banners"
-      ]
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Lock Screen",
+          "Notification Center",
+          "Temporary Banners",
+          "Persistent Banners"
+        ]
+      }
     },
     "Location": {
       "enum": [
