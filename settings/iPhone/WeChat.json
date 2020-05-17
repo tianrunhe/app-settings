@@ -1,0 +1,10 @@
+{
+  "App Name": "WeChat",
+  "Notification?": true,
+  "Alerts": ["Lock Screen", "Temporary Banners"],
+  "Sounds?": true,
+  "Badges?": true,
+  "Location": "Never",
+  "Background?": true,
+  "Cellular Data?": true
+}
