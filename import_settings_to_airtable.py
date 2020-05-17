@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 from airtable import Airtable
 
+PRIMARY_FIELD_NAME = 'App Name'
+GITHUB_BASE_URL = 'https://github.com/tianrunhe/app-settings/commits/master/settings'
 airtables = {
     'iPhone': Airtable(os.getenv('AIRTABLE_BASE_ID'), 'iPhone'),
     'iPad': Airtable(os.getenv('AIRTABLE_BASE_ID'), 'iPhone'),
@@ -25,9 +27,11 @@ def main():
             if item.is_file():
                 with open(item) as settings_file:
                     settings = json.load(settings_file)
-                    response = airtable.search('App Name', settings['App Name'])
+                    app_name = settings[PRIMARY_FIELD_NAME]
+                    settings['Change History'] = f'{GITHUB_BASE_URL}/{os_name}/{app_name}.json'
+                    response = airtable.search(PRIMARY_FIELD_NAME, settings[PRIMARY_FIELD_NAME])
                     if len(response) > 0:  # delete first
-                        airtable.delete_by_field('App Name', settings['App Name'])
+                        airtable.delete_by_field(PRIMARY_FIELD_NAME, settings[PRIMARY_FIELD_NAME])
                     airtable.insert(settings)
 
 
