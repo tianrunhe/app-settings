@@ -27,6 +27,12 @@
         ]
       }
     },
+    "Sounds?": {
+      "type": "boolean"
+    },
+    "Badges?": {
+      "type": "boolean"
+    },
     "Location": {
       "enum": [
         "Never",
@@ -44,9 +50,19 @@
   },
   "if": {
     "properties": {
-      "Notification": { "const": true }
+      "Notification?": {
+        "const": true
+      }
     },
-    "required": ["Notification"]
+    "required": [
+      "Notification?"
+    ]
   },
-  "then": { "required": ["Alerts"] }
+  "then": {
+    "required": [
+      "Alerts",
+      "Sounds?",
+      "Badges?"
+    ]
+  }
 }
